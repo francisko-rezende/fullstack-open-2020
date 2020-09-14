@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 const Statistics = (props) => {
 	return (
 		<div>
-			<div>props.good {props.good}</div>
-			<div>props.neutral {props.neutral}</div>
-			<div>props.bad {props.bad}</div>
+			<div>good {props.good}</div>
+			<div>neutral {props.neutral}</div>
+			<div>bad {props.bad}</div>
 			<div>all {props.good + props.neutral + props.bad}</div>
 			<div>average {(props.good * 1 + props.bad * -1) / (props.good + props.neutral + props.bad)}</div>
 			<div>positive {props.good / (props.good + props.neutral + props.bad) * 100} %</div>
