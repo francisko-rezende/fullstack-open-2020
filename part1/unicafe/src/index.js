@@ -1,19 +1,47 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+const Button = (props) => {
+	return (
+		<div>
+			<button onClick={props.handleGood}>{props.good}</button>
+			<button onClick={props.handleNeutral}>{props.neutral}</button>
+			<button onClick={props.handleBad}>{props.bad}</button>
+		</div>
+	);
+};
+
 const Statistics = (props) => {
 	if (props.all === 0) {
 		return <div>No feedback given</div>;
-  }
-  
+	}
+
 	return (
 		<div>
-			<div>good {props.good}</div>
-			<div>neutral {props.neutral}</div>
-			<div>bad {props.bad}</div>
-			<div>all {props.good + props.neutral + props.bad}</div>
-			<div>average {(props.good * 1 + props.bad * -1) / (props.good + props.neutral + props.bad)}</div>
-			<div>positive {props.good / (props.good + props.neutral + props.bad) * 100} %</div>
+			<Statistic all={props.all} text="good" value={props.good} />
+			<Statistic all={props.all} text="neutral" value={props.neutral} />
+			<Statistic all={props.all} text="bad" value={props.bad} />
+			<Statistic all={props.all} text="all" value={props.good + props.neutral + props.bad} />
+			<Statistic
+				all={props.all}
+				text="average"
+				value={(props.good * 1 + props.bad * -1) / (props.good + props.neutral + props.bad)}
+			/>
+			<Statistic
+				all={props.all}
+				text="positive"
+				value={props.good / (props.good + props.neutral + props.bad) * 100 + ' %'}
+			/>
+		</div>
+	);
+};
+
+const Statistic = (props) => {
+	return (
+		<div>
+			<div>
+				{props.text} {props.value}
+			</div>
 		</div>
 	);
 };
@@ -43,9 +71,14 @@ const App = () => {
 	return (
 		<div>
 			<h1>give feedback</h1>
-			<button onClick={handleGood}>good</button>
-			<button onClick={handleNeutral}>neutral</button>
-			<button onClick={handleBad}>bad</button>
+			<Button
+				handleGood={handleGood}
+				good="good"
+				handleNeutral={handleNeutral}
+				neutral="neutral"
+				handleBad={handleBad}
+				bad="bad"
+			/>
 			<h1>statistics</h1>
 			<Statistics good={good} neutral={neutral} bad={bad} all={all} />
 		</div>
