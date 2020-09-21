@@ -39,12 +39,27 @@ const Statistics = (props) => {
 const Statistic = (props) => {
 	return (
 		<div>
-			<div>
-				{props.text} {props.value}
-			</div>
+			<table>
+				<tbody>
+					<tr>
+						<td>{props.text}</td>
+						<td>{props.value}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	);
 };
+
+// const Statistic = (props) => {
+// 	return (
+// 		<div>
+// 			<div>
+// 				{props.text} {props.value}
+// 			</div>
+// 		</div>
+// 	);
+// };
 
 const App = () => {
 	// save clicks of each button to own state
