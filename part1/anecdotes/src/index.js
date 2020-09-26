@@ -28,20 +28,22 @@ const App = (props) => {
 
 	const handleVotes = () => {
 		const votesCopy = [ ...votes ];
-    votesCopy[selected] += 1;
-    countVotes(votesCopy)
+		votesCopy[selected] += 1;
+		countVotes(votesCopy);
 	};
 
 	return (
 		<div>
+			<h1>Anecdote of the day</h1>
 			{props.anecdotes[selected]}
+			<div>has {votes[selected]} votes</div>
 			<div>
-        has {votes[selected]} votes
-      </div>
-			<div>
-        <Button handle={handleVotes} text="vote" />
-        			<Button handle={handleNewAnecdote} text="next anecdote" />
-      </div>
+				<Button handle={handleVotes} text="vote" />
+				<Button handle={handleNewAnecdote} text="next anecdote" />
+			</div>
+			<h1>Anecdote with most votes</h1>
+			{props.anecdotes[votes.indexOf(Math.max(...votes))]}
+			<div>has {Math.max(...votes)} votes</div>
 		</div>
 	);
 };
